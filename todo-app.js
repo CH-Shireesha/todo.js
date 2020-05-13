@@ -25,7 +25,7 @@ function render() {
     const listUI = document.getElementById("todolist")
     listUI.innerHTML = "";
     if (taskList.length === 0) listUI.innerHTML = "No tasks todo :-)"
-    taskList.forEach((task) => {
+    taskList.forEach((task) => { 
         listUI.innerHTML += task.toString();
     })
 }
