@@ -11,10 +11,9 @@ class Task {
     toString() {
         let htmlText = '<li class="task" ><div>'
         htmlText += this.name
-        htmlText += ", " + this.dueDate.getDate() 
-                 + "/" + this.dueDate.getMonth();
+        htmlText += ", " + this.dueDate
         htmlText += '<input type="checkbox" name="isDone" id="isDone">'
-        htmlText += '<button onclick="deleteTask(';
+        htmlText += '<button id="remove" onclick="deleteTask(';
         htmlText += this.taskId;
         htmlText += ')">Delete</button>';
         htmlText += '</div></li>';
@@ -26,7 +25,7 @@ function render() {
     const listUI = document.getElementById("todolist")
     listUI.innerHTML = "";
     if (taskList.length === 0) listUI.innerHTML = "No tasks todo :-)"
-    taskList.forEach((task) => {
+    taskList.forEach((task) => { 
         listUI.innerHTML += task.toString();
     })
 }
@@ -47,7 +46,8 @@ function deleteTask(taskId) {
 
 function createTask() {
     const taskName = document.getElementById("taskName").value;
-    addTask(new Task(taskName, new Date(), false));
+    const dueDate = document.getElementById("dueDate").value;
+    addTask(new Task(taskName, dueDate, false));
 }
 
 function addTask(t) {

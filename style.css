@@ -1,0 +1,51 @@
+body{
+    height: 100%;
+    background-color: #111;
+    box-sizing: border-box;
+}
+
+#input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#todolist{
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.task{
+    background: none;
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+    width: 245px;
+}
+
+h1 {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 50;
+    text-align: center;
+    margin: 1rem 0 3rem; 
+    font-family: 'Hind', sans-serif;
+}
+.add{
+    outline: none;
+    border: none;
+    height: 50px;
+    border-radius: 25px;
+    width: 50px;
+    background-color: lime;
+    color: white;
+    cursor: pointer;
+    transition: .5s;
+    margin: 0.25rem;
+}
