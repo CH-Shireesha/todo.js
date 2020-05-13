@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <head>
     <title>TODO App</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
 </head>
 <body>
+    <h1>TODO LIST</h1>
     <ol>
         <div id="todolist"></div>
     </ol>
-    <input type="text" name="taskName" id="taskName">
-    <button onclick="createTask()">Add Task</button>
+    <div id="input">
+        <input type="text" name="taskName" id="taskName">
+        <input type="date" name="dueDate" id="dueDate">
+        <button class="add" onclick="createTask()">Add Task</button>
+    </div>
     <script src="todo-app.js"></script>
 </body>
 </html>
