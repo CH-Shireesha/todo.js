@@ -1,4 +1,12 @@
+const element = (
+    <div>
+        <input type="text" name="taskName" id="taskName"/>
+        <input type="date" name="dueDate" id="dueDate"/>
+        <button class="add" onclick="createTask()">Add Task</button>
+    </div>
+)
+
 ReactDOM.render(
-    <input type="text" id ="taskName"></input>
+    element,
     document.getElementById('root')
 );
