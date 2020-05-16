@@ -43,8 +43,8 @@ class TaskNameForm extends React.Component {
         const taskList = this.props.taskList;
         // create a task object
         event.preventDefault();
-        const task = {id:date, name: this.state.value, 
-        dueDate: this.state.value};
+        const task = {id:Date.now(), name: this.state.value, 
+        dueDate: this.state.date};
         // add the task object to the task list
         this.props.onAddTask(task);
     }
@@ -57,12 +57,12 @@ class TaskNameForm extends React.Component {
     render() {
         return(
             <form onSubmit={this.handleSubmit}>
-                <input type="text" value={this.state.value} 
-                onChange={this.handleChange}/>
-                <input type="date" value={this.state.value} 
-                onChange={this.handleChange}/>
-                <input type="submit" value="Add Task" />
-            </form>
+					<input  type="text" onChange={this.handleChange} />
+					<input type="date" required onChange={() => {
+						this.setState({date: new Date(event.target.value)})
+					}}/>
+					<input type="submit" value="Add Task" />
+				</form>
         );
     }
 }
@@ -70,4 +70,4 @@ class TaskNameForm extends React.Component {
 ReactDOM.render(
     <TodoList list={[]} />,
     document.getElementById('todo')
-)
+);
