@@ -1,5 +1,6 @@
 function Task(props) {
-    return <li>{props.name}, {props.dueDate.toLocaleTimeString()}</li>
+    return <li>{props.name} {props.dueDate.toLocaleString()}   
+    <input type="submit" value="Delete Task" onClick={()=>{props.onDeleteTask(props.id)}}/></li>
 }
 
 class TodoList extends React.Component {
@@ -8,10 +9,19 @@ class TodoList extends React.Component {
         this.state = {list: props.list};
 
         this.handleAddTask = this.handleAddTask.bind(this);
+        this.handleDeleteTask = this.handleDeleteTask.bind(this);
     }
     handleAddTask(task) {
         console.log("add task clicked");
         this.state.list.push(task);
+        this.setState({list: this.state.list})
+    }
+    handleDeleteTask(id){
+        console.log("Delete task clicked");
+        this.state.list = this.state.list.filter(task =>{
+            if(task.id != id)
+                return task;
+        })
         this.setState({list: this.state.list})
     }
     render() {
@@ -21,7 +31,7 @@ class TodoList extends React.Component {
                 <ol>
                     {
                         this.state.list.map((t) =>
-                            <Task key={t.id} name={t.name} dueDate={t.dueDate} />)
+                        <Task key={t.id} id = {t.id} name={t.name} dueDate={t.dueDate} onDeleteTask={this.handleDeleteTask}/>)
                     }
                 </ol>
                 <TaskNameForm onAddTask={this.handleAddTask} />
@@ -33,8 +43,7 @@ class TodoList extends React.Component {
 class TaskNameForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
-
+        this.state = {value: '', date: ''};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
