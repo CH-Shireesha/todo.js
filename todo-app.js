@@ -1,5 +1,5 @@
 function Task(props) {
-    return <li>{props.name} {props.dueDate.toLocaleString()}   
+    return <li>{props.name} {props.dueDate.toLocaleString()}&nbsp; 
     <input type="submit" value="Delete Task" onClick={()=>{props.onDeleteTask(props.id)}}/></li>
 }
 
@@ -27,7 +27,6 @@ class TodoList extends React.Component {
     render() {
         return (
             <div>
-                <h1>TODO List</h1>
                 <ol>
                     {
                         this.state.list.map((t) =>
@@ -52,7 +51,7 @@ class TaskNameForm extends React.Component {
         const taskList = this.props.taskList;
         // create a task object
         event.preventDefault();
-        const task = {id:Date.now(), name: this.state.value, 
+        const task = { name: this.state.value, 
         dueDate: this.state.date};
         // add the task object to the task list
         this.props.onAddTask(task);
@@ -66,10 +65,10 @@ class TaskNameForm extends React.Component {
     render() {
         return(
             <form onSubmit={this.handleSubmit}>
-					<input  type="text" onChange={this.handleChange} />
+					<input  type="text" onChange={this.handleChange} />&nbsp;
 					<input type="date" required onChange={() => {
 						this.setState({date: new Date(event.target.value)})
-					}}/>
+					}}/>&nbsp;
 					<input type="submit" value="Add Task" />
 				</form>
         );
