@@ -2,13 +2,19 @@ import * as React from 'react';
 import { Text, View, StyleSheet, FlatList } from 'react-native';
 import Constants from 'expo-constants';
 import Header from './components/header';
-import TodoItem from './components/ToDoItem';
 import AddTodo from './components/form';
+import TodoItem from './components/ToDoItem';
 
+// You can import from local files
+import AssetExample from './components/AssetExample';
+
+// or any pure javascript modules available in npm
+import { Card } from 'react-native-paper';
 
 export default function App() {
 
 const [todos, setTodos] = React.useState([
+  // { text: , key: },
 ]);
 
 const pressHandler = (key) => {
@@ -17,11 +23,10 @@ const pressHandler = (key) => {
   });
 };
 
-const submitHandler = (text) => {
-    setText('');
+const submitHandler = (text, date) => {
     setTodos(prevTodos => {
       return [
-        { text, key: Math.random().toString() },
+        { text, date, key: Math.random().toString() },
         ...prevTodos
       ];
     });
@@ -54,3 +59,4 @@ const styles = StyleSheet.create({
     padding: 40,
   },
 });
+

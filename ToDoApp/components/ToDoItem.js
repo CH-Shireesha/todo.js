@@ -4,7 +4,7 @@ import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 export default function TodoItem({ pressHandler, item }) {
   return (
     <TouchableOpacity onPress={() => pressHandler(item.key)}>
-      <Text style={styles.item}>{item.text}</Text>
+      <Text style={styles.item}>{item.text}, {item.date}</Text>
     </TouchableOpacity>
   )
 }
@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     borderColor: '#bbb',
     borderWidth: 1,
     borderStyle: "dashed",
-    borderRadius: 1,
-    borderRadius: 10,
+    borderRadius: 1
   }
 });
