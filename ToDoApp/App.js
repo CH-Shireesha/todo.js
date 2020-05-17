@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, FlatList } from 'react-native';
 import Constants from 'expo-constants';
 import Header from './components/header';
 import TodoItem from './components/ToDoItem';
+import AddTodo from './components/form';
 
 
 export default function App() {
