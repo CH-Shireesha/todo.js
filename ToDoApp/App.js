@@ -1,19 +1,22 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, FlatList } from 'react-native';
+import { Component } from 'react';
+import { Text,TextInputAndroidProps,TextInput,Button, View, StyleSheet, FlatList } from 'react-native';
 import Constants from 'expo-constants';
-import Header from './components/header';
-import AddTodo from './components/form';
 import TodoItem from './components/ToDoItem';
+import DatePicker from 'react-native-datepicker';
+  class MyDatePicker extends Component {
+  constructor(props) {
+    super(props);
+    //set value in state for initial date
+    this.state = { date: '15-05-2020' };
+  }}
 
-// You can import from local files
-import AssetExample from './components/AssetExample';
 
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-paper';
 
 export default function App() {
-
-const [todos, setTodos] = React.useState([
+  const [todos, setTodos] = React.useState([
   // { text: , key: },
 ]);
 
@@ -23,7 +26,12 @@ const pressHandler = (key) => {
   });
 };
 
-const submitHandler = (text, date) => {
+  const [text, setText] = React.useState('');
+
+  const changeHandler = (val) => {
+    setText(val);
+  };
+  const submitHandler = (text, date) => {
     setTodos(prevTodos => {
       return [
         { text, date, key: Math.random().toString() },
@@ -31,13 +39,43 @@ const submitHandler = (text, date) => {
       ];
     });
   } 
+const [date, setDate] = React.useState('15-05-2020');
+
+  const datechangeHandler = (val) => {
+    setDate(val);
+  };
 
   return (
     <View style={styles.container}>
-          <Header />
-      <View style={styles.content}>
-          <AddTodo submitHandler={submitHandler} />
-       <View style={styles.list}>
+      <Text style={styles.title}>ToDoList</Text>
+      <TextInput style={styles.input} 
+       placeholder='new todo...'
+        onChangeText={changeHandler} 
+        value={text} ></TextInput>
+       <DatePicker
+          style={{width: 200, marginBottom: 20}}
+          date={date} //initial date from state
+          mode="date" //The enum of date, datetime and time
+          placeholder="select date"
+          format="DD-MM-YYYY"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          customStyles={{
+            dateIcon: {
+              position: 'absolute',
+              left: 0,
+              top: 4,
+              marginLeft: 0
+            },
+            dateInput: {
+              marginLeft: 36
+            }
+          }}
+          onDateChange={datechangeHandler}
+          value={date}
+        />
+      <Button color='coral' onPress={() => submitHandler(text, date)} title='add todo' />
+      <View style={styles.list}>
             <FlatList
               data={todos}
               renderItem={({ item }) => (
@@ -45,18 +83,32 @@ const submitHandler = (text, date) => {
               )}
             />
         </View>
-      </View>    
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#ecf0f1',
-  },
-  content: {
-    padding: 40,
-  },
-});
 
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: '#ecf0f1',
+    padding: 8,
+    flex: 1,
+  },
+  input: {
+    marginTop: 20,
+    marginBottom: 10,
+    paddingHorizontal: 8,
+    paddingVertical: 6,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+  title:{
+    backgroundColor:'coral',
+    paddingTop: 40,
+    height: 80,
+    textAlign: 'center',
+    marginBottom:30
+
+  }
+});
